@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-zinc-900 antialiased;
+}
+
+@layer components {
+  .container-tight {
+    @apply mx-auto w-full max-w-7xl px-6 lg:px-10;
+  }
+
+  .section {
+    @apply relative scroll-mt-24 py-24 md:py-32;
+  }
+
+  .nav-link {
+    @apply text-sm text-zinc-600 transition-colors hover:text-zinc-900;
+  }
+
+  .tri-underline {
+    background-image: linear-gradient(
+      to right,
+      #e63946 0 33.333%,
+      #f6c648 33.333% 66.666%,
+      #2a9d4a 66.666% 100%
+    );
+    @apply h-1 w-16 rounded-full;
+  }
+
+  .ornament-dot {
+    @apply pointer-events-none absolute rounded-full blur-2xl opacity-60;
+    animation: float 9s ease-in-out infinite;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 8px -12px;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: -6px -8px;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .ornament-dot,
+  .float-anim,
+  .float-anim-soft,
+  .spin-anim {
+    animation: none;
+  }
+}
