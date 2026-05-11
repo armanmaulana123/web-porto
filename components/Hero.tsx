@@ -24,12 +24,127 @@ function TechBadge({ icon, name, className, animation }: BadgeProps) {
   return (
     <div
       aria-hidden
-      className={`absolute flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-zinc-800 shadow-md backdrop-blur ${className}`}
+      className={`absolute flex items-center gap-1 rounded-lg border border-zinc-200 bg-white/95 px-1.5 py-0.5 text-[9px] font-semibold text-zinc-800 shadow-md backdrop-blur sm:gap-1.5 sm:px-2.5 sm:py-1 sm:text-[11px] ${className}`}
       style={{ animation }}
     >
       {icon}
       {name}
     </div>
+  );
+}
+
+function PortraitOrnaments() {
+  return (
+    <>
+      {/* Solid yellow diamond — top-right corner */}
+      <span
+        aria-hidden
+        className="absolute -right-3 top-1 h-5 w-5 rotate-45 rounded-md bg-brand-yellow shadow-md sm:-right-4 sm:top-2 sm:h-7 sm:w-7"
+        style={{ animation: "float 9s ease-in-out infinite 0.7s" }}
+      />
+
+      {/* Hollow red ring — top-center spin */}
+      <span
+        aria-hidden
+        className="absolute left-1/2 -top-3 h-7 w-7 -translate-x-1/2 rounded-full border-[2px] border-brand-red/70 sm:-top-4 sm:h-10 sm:w-10 sm:border-[3px]"
+        style={{ animation: "spin-slow 22s linear infinite" }}
+      />
+
+      {/* Tri-color dots cluster — bottom-center */}
+      <div
+        aria-hidden
+        className="absolute -bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5"
+        style={{ animation: "float-soft 10s ease-in-out infinite 0.4s" }}
+      >
+        <span className="h-2 w-2 rounded-full bg-brand-red" />
+        <span className="h-2 w-2 rounded-full bg-brand-yellow" />
+        <span className="h-2 w-2 rounded-full bg-brand-green" />
+      </div>
+
+      {/* Curved dashed line — top-right flourish */}
+      <svg
+        aria-hidden
+        className="absolute right-0 top-14 h-9 w-9 sm:right-1 sm:top-20 sm:h-12 sm:w-12"
+        viewBox="0 0 56 56"
+        fill="none"
+      >
+        <path
+          d="M 6 50 Q 28 6 50 28"
+          stroke="#2a9d4a"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="3 5"
+        />
+      </svg>
+
+      {/* Floating tech badges — languages/runtime on the left, databases & ML on the right */}
+      <TechBadge
+        icon={<TypeScriptIcon />}
+        name="TypeScript"
+        className="-left-6 top-4 sm:-left-12"
+        animation="float 7s ease-in-out infinite 0.2s"
+      />
+      <TechBadge
+        icon={<NodeIcon />}
+        name="Node.js"
+        className="-right-1 top-4 sm:-right-2 lg:-right-8"
+        animation="float 8s ease-in-out infinite 0.5s"
+      />
+      <TechBadge
+        icon={<PhpIcon />}
+        name="PHP"
+        className="-left-5 top-[26%] sm:-left-10"
+        animation="float-soft 9s ease-in-out infinite 0.8s"
+      />
+      <TechBadge
+        icon={<TensorflowIcon />}
+        name="TensorFlow"
+        className="-right-2 top-[20%] sm:-right-4 lg:-right-12"
+        animation="float-soft 9s ease-in-out infinite 0.3s"
+      />
+      <TechBadge
+        icon={<PythonIcon />}
+        name="Python"
+        className="-left-7 top-[48%] sm:-left-14"
+        animation="float 10s ease-in-out infinite 1.1s"
+      />
+      <TechBadge
+        icon={<PostgresIcon />}
+        name="PostgreSQL"
+        className="-right-2 top-[38%] sm:-right-4 lg:-right-10"
+        animation="float 10s ease-in-out infinite 1.1s"
+      />
+      <TechBadge
+        icon={<MongoIcon />}
+        name="MongoDB"
+        className="-right-1 top-[55%] sm:-right-2 lg:-right-6"
+        animation="float-soft 8s ease-in-out infinite 1.0s"
+      />
+      <TechBadge
+        icon={<MysqlIcon />}
+        name="MySQL"
+        className="-left-5 top-[70%] sm:-left-10"
+        animation="float 9s ease-in-out infinite 0.4s"
+      />
+      <TechBadge
+        icon={<RedisIcon />}
+        name="Redis"
+        className="-right-2 top-[72%] sm:-right-4 lg:-right-10"
+        animation="float 8s ease-in-out infinite 0.9s"
+      />
+      <TechBadge
+        icon={<MqttIcon />}
+        name="MQTT"
+        className="-left-4 bottom-12 sm:-left-8"
+        animation="float-soft 9s ease-in-out infinite 1.4s"
+      />
+      <TechBadge
+        icon={<ElasticIcon />}
+        name="Elastic"
+        className="-right-1 bottom-8 sm:-right-2 lg:-right-6"
+        animation="float-soft 8s ease-in-out infinite 0.6s"
+      />
+    </>
   );
 }
 
@@ -55,119 +170,7 @@ export function Hero() {
 
       {/* Desktop portrait — absolute, bottom-aligned, 85% of section height */}
       <div className="pointer-events-none absolute bottom-0 right-0 hidden h-[85%] aspect-[3/4] md:block lg:right-10 xl:right-16">
-        {/* Geometric accents */}
-
-        {/* Solid yellow diamond — top-right corner */}
-        <span
-          aria-hidden
-          className="absolute -right-4 top-2 h-7 w-7 rotate-45 rounded-md bg-brand-yellow shadow-md"
-          style={{ animation: "float 9s ease-in-out infinite 0.7s" }}
-        />
-
-        {/* Hollow red ring — top-center spin */}
-        <span
-          aria-hidden
-          className="absolute left-1/2 -top-4 h-10 w-10 -translate-x-1/2 rounded-full border-[3px] border-brand-red/70"
-          style={{ animation: "spin-slow 22s linear infinite" }}
-        />
-
-        {/* Tri-color dots cluster — bottom-center */}
-        <div
-          aria-hidden
-          className="absolute -bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5"
-          style={{ animation: "float-soft 10s ease-in-out infinite 0.4s" }}
-        >
-          <span className="h-2 w-2 rounded-full bg-brand-red" />
-          <span className="h-2 w-2 rounded-full bg-brand-yellow" />
-          <span className="h-2 w-2 rounded-full bg-brand-green" />
-        </div>
-
-        {/* Curved dashed line — top-right flourish */}
-        <svg
-          aria-hidden
-          className="absolute right-1 top-20"
-          width="48"
-          height="48"
-          viewBox="0 0 56 56"
-          fill="none"
-        >
-          <path
-            d="M 6 50 Q 28 6 50 28"
-            stroke="#2a9d4a"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeDasharray="3 5"
-          />
-        </svg>
-
-        {/* Floating tech badges — languages/runtime on the left, databases & ML on the right */}
-        <TechBadge
-          icon={<TypeScriptIcon />}
-          name="TypeScript"
-          className="-left-12 top-4"
-          animation="float 7s ease-in-out infinite 0.2s"
-        />
-        <TechBadge
-          icon={<NodeIcon />}
-          name="Node.js"
-          className="-right-2 top-4 lg:-right-8"
-          animation="float 8s ease-in-out infinite 0.5s"
-        />
-        <TechBadge
-          icon={<PhpIcon />}
-          name="PHP"
-          className="-left-10 top-[26%]"
-          animation="float-soft 9s ease-in-out infinite 0.8s"
-        />
-        <TechBadge
-          icon={<TensorflowIcon />}
-          name="TensorFlow"
-          className="-right-4 top-[20%] lg:-right-12"
-          animation="float-soft 9s ease-in-out infinite 0.3s"
-        />
-        <TechBadge
-          icon={<PythonIcon />}
-          name="Python"
-          className="-left-14 top-[48%]"
-          animation="float 10s ease-in-out infinite 1.1s"
-        />
-        <TechBadge
-          icon={<PostgresIcon />}
-          name="PostgreSQL"
-          className="-right-4 top-[38%] lg:-right-10"
-          animation="float 10s ease-in-out infinite 1.1s"
-        />
-        <TechBadge
-          icon={<MongoIcon />}
-          name="MongoDB"
-          className="-right-2 top-[55%] lg:-right-6"
-          animation="float-soft 8s ease-in-out infinite 1.0s"
-        />
-        <TechBadge
-          icon={<MysqlIcon />}
-          name="MySQL"
-          className="-left-10 top-[70%]"
-          animation="float 9s ease-in-out infinite 0.4s"
-        />
-        <TechBadge
-          icon={<RedisIcon />}
-          name="Redis"
-          className="-right-4 top-[72%] lg:-right-10"
-          animation="float 8s ease-in-out infinite 0.9s"
-        />
-        <TechBadge
-          icon={<MqttIcon />}
-          name="MQTT"
-          className="-left-8 bottom-12"
-          animation="float-soft 9s ease-in-out infinite 1.4s"
-        />
-        <TechBadge
-          icon={<ElasticIcon />}
-          name="Elastic"
-          className="-right-2 bottom-8 lg:-right-6"
-          animation="float-soft 8s ease-in-out infinite 0.6s"
-        />
-
+        <PortraitOrnaments />
         <Image
           src="/profile.png"
           alt="Arman Maulana Saputra"
@@ -251,7 +254,8 @@ export function Hero() {
 
         {/* Mobile portrait — inline below text */}
         <div className="mt-12 md:hidden">
-          <div className="relative mx-auto aspect-[3/4] w-full max-w-sm">
+          <div className="pointer-events-none relative mx-auto aspect-[3/4] w-full max-w-sm">
+            <PortraitOrnaments />
             <Image
               src="/profile.png"
               alt="Arman Maulana Saputra"
